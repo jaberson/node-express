@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nodeTest</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        welcome to node world!
+        <button onclick="login()">getlist</button>
+        <button onclick="post()">post</button>
+    </div>
+    <div>
+        <h3>apiServer && publishSever</h3>
+        <button onclick="getData()">getDate</button>
+    </div>
+    <script>
+        function getData() {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "control/publish/components",
+                success: function(data){
+                    console.log(data.data)
+                    console.log(typeof data)
+                }
+            })
+        }
+        function login () {
+            console.log('login')
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "control/api/businesses",
+                success: function(data){
+                    console.log(data.data)
+                    console.log(typeof data)
+                }
+            })
+        }
+        function post () {
+            let data = {
+                "code": "testdata",
+                "description": "nodetest",
+                "name": "测试数据"
+            }
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                url: 'control/api/businesses',
+                data: data,
+                success: function(data) {
+                    console.log(data)
+                }
+            })
+        }
+    </script>
+</body>
+</html>
